@@ -6,6 +6,11 @@ using System.Text;
 
 namespace MVVM.Models
 {
+
+    /// <summary>
+    /// On implémente INotifyPropertyChanged pour notifier des changements de valeur sur les propriétés
+    /// Notre Model
+    /// </summary>
     public class ContactModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -36,7 +36,11 @@ namespace MVVM.Tools
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-        public void Execute(object parameter) { _execute((T)parameter); }
+        public void Execute(object parameter)
+        {
+            Debug.WriteLine("click");
+            _execute((T)parameter);
+        }
         #endregion // ICommand Members 
     }
 }
