@@ -6,6 +6,10 @@ using System.Windows.Input;
 
 namespace MVVM.Tools
 {
+    /// <summary>
+    /// Inspiré de https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class RelayCommand<T> : ICommand
     {
         #region Fields 
