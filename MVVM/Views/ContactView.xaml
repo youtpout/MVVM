@@ -51,10 +51,14 @@
                         <TextBlock Grid.Column="1" Text="{Binding LastName}" />
                         <TextBlock Grid.Column="2" Text="{Binding BirthYear}" />
                         <Button  Grid.Column="3" Content="Edit"  Command="{Binding Path=DataContext.EditCommand,ElementName=List}"  CommandParameter="{Binding}"></Button>
+                        <Button  Grid.Column="4" Content="Delete"  Command="{Binding Path=DataContext.DeleteCommand,ElementName=List}"  CommandParameter="{Binding}"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel>
+            <Button  Content="Ajouter un utilisateur" Width="300" Command="{Binding AddCommand}"  ></Button>
+        </StackPanel>
         <StackPanel DataContext="{Binding ContactSelected}">
             <Label FontSize="30">Edition utilisateur</Label>
             <Grid>

@@ -72,7 +72,12 @@ namespace MVVM.ViewModels
 
         private void AddContact()
         {
-            ContactModel contact = new ContactModel();
+            ContactModel contact = new ContactModel()
+            {
+                BirthYear = DateTime.Now.Year,
+                FirstName = "Prénom",
+                LastName = "Nom"
+            };
             ContactSelected = contact;
             Contacts.Add(contact);
         }

@@ -13,14 +13,12 @@ namespace MVVM.Models
     /// </summary>
     public class ContactModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string firstName;
 
         public string FirstName
         {
             get { return firstName; }
-            set { firstName = value; }
+            set { SetProperty(ref firstName, value); }
         }
 
         private string lastName;
@@ -28,7 +26,7 @@ namespace MVVM.Models
         public string LastName
         {
             get { return lastName; }
-            set { lastName = value; }
+            set { SetProperty(ref lastName, value); }
         }
 
         private int birthYear;
@@ -36,16 +34,33 @@ namespace MVVM.Models
         public int BirthYear
         {
             get { return birthYear; }
-            set { birthYear = value; }
+            set { SetProperty(ref birthYear, value); }
         }
 
 
-        void OnNotifyPropertyChanged([CallerMemberName]string name = "")
+        protected bool SetProperty<T>(ref T backingStore, T value,
+             [CallerMemberName] string propertyName = "",
+             Action onChanged = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return false;
+
+            backingStore = value;
+            onChanged?.Invoke();
+            OnPropertyChanged(propertyName);
+            return true;
         }
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            var changed = PropertyChanged;
+            if (changed == null)
+                return;
+
+            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }
