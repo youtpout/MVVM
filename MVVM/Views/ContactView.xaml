@@ -10,8 +10,8 @@
       Title="ContactView">
 
     <StackPanel>
-
-        <ListView ItemsSource="{Binding Contacts}" x:Name="List" HorizontalAlignment="Stretch" >
+        <Label FontSize="30">Liste utilisateur</Label>
+        <ListView ItemsSource="{Binding Contacts}" x:Name="List" HorizontalAlignment="Stretch"  SelectionMode="Single">
             <ListView.Template>
                 <ControlTemplate>
                     <Grid  HorizontalAlignment="Left">
@@ -30,7 +30,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Prénom" Grid.Column="0" />
                             <TextBlock Grid.Column="1" Text="Nom" />
-                            <TextBlock Grid.Column="2" Text="Année de naissance" />
+                            <TextBlock Grid.Column="2" Text="Naissance" />
                         </Grid>
                         <ItemsPresenter Grid.Row="1"  HorizontalAlignment="Stretch"></ItemsPresenter>
                     </Grid>
@@ -55,22 +55,28 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel>
-            <Button  Content="Edit" Command="{Binding EditCommand}"  ></Button>
-        </StackPanel>
         <StackPanel DataContext="{Binding ContactSelected}">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Prénom"></Label>
-                <TextBox Text="{Binding FirstName}"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Nom"></Label>
-                <TextBox Text="{Binding LastName}"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Date de naissance"></Label>
-                <TextBox Text="{Binding BirthYear}"></TextBox>
-            </StackPanel>
+            <Label FontSize="30">Edition utilisateur</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Prénom"></Label>
+                <TextBox Grid.Row="0" Grid.Column="1"  Text="{Binding FirstName}"></TextBox>
+
+                <Label Grid.Row="1" Grid.Column="0"  Content="Nom"></Label>
+                <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" ></TextBox>
+
+                <Label  Grid.Row="2" Grid.Column="0" Content="Date de naissance"></Label>
+                <TextBox  Grid.Row="2" Grid.Column="1" Text="{Binding BirthYear}"></TextBox>
+            </Grid>            
+         
         </StackPanel>
     </StackPanel>
 </Page>
