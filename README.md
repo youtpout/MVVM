@@ -1,0 +1,3 @@
+# MVVM
+Exemple d'utilisation de MVVM avec WPF
+Au menu Binding, RelayCommand, INotifyPropertyChanged ...
